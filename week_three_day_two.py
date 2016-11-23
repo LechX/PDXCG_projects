@@ -1,3 +1,4 @@
+'''
 # practice warmup -- replace everything except last four letters with #s
 
 # get user input
@@ -17,3 +18,17 @@ else:
     hashes_and_last_four.append(user_input[len(user_input) - 4:])
 
 print("".join(hashes_and_last_four))
+'''
+
+
+# random number guessing game with while loop
+import random
+
+user_number = int(input("Please guess a number between 1 and 10 > "))
+
+computer_number = random.randint(1,10)
+
+while user_number != computer_number:
+    user_number = int(input("Guess again! > "))
+
+print("Congrats, you got it! The correct number was {}.".format(computer_number))
