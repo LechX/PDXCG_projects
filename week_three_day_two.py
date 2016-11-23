@@ -1,24 +1,4 @@
 # practice warmup -- replace everything except last four letters with #s
-'''
-user_input = input("Please enter your favorite quotation > ")
-size = len(user_input)
-user_input_list = list(user_input)
-
-user_input_list = user_input_list.reverse()
-
-new_list = []
-
-for i in range (0,size):
-    if i < 4:
-        current_letter = user_input_list[i]
-        new_list.append(current_letter)
-    else:
-        new_list.append("#")
-
-new_list = new_list.reverse()
-
-print("".join(new_list))
-'''
 
 # get user input
 user_input = input("Please enter your favorite quotation > ")
