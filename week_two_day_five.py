@@ -75,6 +75,11 @@ def print_board(board):
     for row in board:
         print(" ".join(row))
 
+# USE DOUBLE FOR LOOP TO INITIALIZE BOARD
+# INSERT CREATE_BOARD FUNCTION
+# ADD IS_WIN(TURN) FUNCTION THAT RETURNS TRUE OR FALSE -- if is false, make next turn
+# SWITCH TO WORKING ON CONNECT FOUR
+
 def app():
     """
     function to play tic tac toe with user vs computer selecting at random
