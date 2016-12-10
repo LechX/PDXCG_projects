@@ -63,7 +63,7 @@ class Hand:
             if i[0] != 'A':
                 score = score + values[ranks.index(i[0])]
             else:
-                if score > 10:
+                if score > 10: # this would break in the case of having 5 4 A A A (will sum to 22)
                     score = score + 1
                 else:
                     score = score + 11
