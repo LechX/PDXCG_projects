@@ -37,15 +37,19 @@ def main():
     players = establish_player_count()
     deck = Deck()
 
-    # bets to be added later
-
-
-    # draw hands for each player and the dealer
+    # draw hands for each player and the dealer (CARDS NOT SHOWN)
     for i in range(0, players + 1):
         i = Hand()
     for i in range(0, 2):
         for j in range(0, players + 1):
             get_hand(j).hand.append(deck.draw_card())
+
+    # betting
+    for i in range(0, players):
+        bet = int(input("Player {}, how much would you like to bet? ($5-50 by $5) > ".format(str(i + 1))))
+        while bet % 5 != 0 or bet < 5 or bet > 50:
+            bet = int(input("Player {}, how much would you like to bet? ($5-50 by $5) > ".format(str(i + 1))))
+        get_hand(i).place_bet(bet)
 
     # show hands for each player and the second card for the dealer
     for i in range(0,players):
@@ -55,14 +59,29 @@ def main():
         get_hand(i).show_dealer()
     get_deck(0).print_card_count()
 
-    # players choose to hit or stay
-    for i in range(0, players):
-        hit_or_stay = input("Player {}, hit or stay? (h/s) > ".format(str(i + 1))).lower()
 
-        while hit_or_stay != 's' and hit_or_stay != 'h':
-            hit_or_stay = input("Player {}, hit or stay? (h/s) > ".format(str(i + 1))).lower()
+    # players choose to hit, stay, double down, or split
+    for i in range(0, players):
+        hit_or_stay = input("Player {}, Hit, Stay, sPlit, or Double down? (h/s/p/d) > ".format(str(i + 1))).lower()
+
+        while hit_or_stay != 's' and hit_or_stay != 'h' and hit_or_stay != 'p' and hit_or_stay != 'd':
+            hit_or_stay = input("Player {}, Hit, Stay, sPlit, or Double down? (h/s/p/d) > ".format(str(i + 1))).lower()
 
         while hit_or_stay != 's':
+            if hit_or_stay == 'd':
+                bet = get_hand(i).bet
+                get_hand(i).place_bet(bet * 2)
+                get_hand(i).hand.append(deck.draw_card())
+                print("You have:")
+                get_hand(i).print_hand()
+                if get_hand(i).calculate_score() > 21:
+                    print("Oh no! You bust.")
+                break
+
+            if hit_or_stay == 'p':
+                print("code doesn't currently support this")
+                break
+
             get_hand(i).hand.append(deck.draw_card())
             print("You have:")
             get_hand(i).print_hand()
@@ -72,9 +91,9 @@ def main():
                 print("Oh no! You bust.")
                 break
 
-            hit_or_stay = input("Player {}, hit or stay? (h/s) > ".format(str(i + 1))).lower()
-            while hit_or_stay != 's' and hit_or_stay != 'h':
-                hit_or_stay = input("Player {}, hit or stay? (h/s) > ".format(str(i + 1))).lower()
+            hit_or_stay = input("Player {}, Hit, Stay, or Double down? (h/s/d) > ".format(str(i + 1))).lower()
+            while hit_or_stay != 's' and hit_or_stay != 'h' and hit_or_stay != 'd':
+                hit_or_stay = input("Player {}, Hit, Stay, or Double down? (h/s) > ".format(str(i + 1))).lower()
 
     # dealer draws on 16 or less
     while get_hand(players).calculate_score() < 17:
@@ -93,12 +112,13 @@ def main():
 
     for i in range(0, players):
         player_score = get_hand(i).calculate_score()
+        player_bet = get_hand(i).bet
         if player_score > dealer_score and player_score <= 21:
-            print("Congratulations Player {}, you scored {} and you win!".format(str(i + 1),str(player_score)))
+            print("Congratulations Player {}, you scored {} and you win ${}!".format(str(i + 1), str(player_score), str(2 * player_bet)))
         elif player_score <= 21 and dealer_score > 21:
-            print("Congratulations Player {}, you scored {} and you win!".format(str(i + 1),str(player_score)))
+            print("Congratulations Player {}, you scored {} and you win ${}!".format(str(i + 1),str(player_score), str(2 * player_bet)))
         else:
-            print("Sorry Player {}, you scored {} and you lose.".format(str(i + 1),str(player_score)))
+            print("Sorry Player {}, you scored {} and you lose ${}.".format(str(i + 1),str(player_score), str(player_bet)))
 
 
 main()

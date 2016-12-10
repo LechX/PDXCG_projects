@@ -12,6 +12,9 @@ class Hand:
 
     def __init__(self):
         self.hand = []
+        self.split_hand = []
+        self.double_down = "no"
+        self.bet = 0
         self.id = Hand.id
         Hand.id += 1
         Hand.hand_list.append(self)
@@ -28,6 +31,10 @@ class Hand:
             print("XX")
         for i in range(1, 2):
             print(self.hand[i])
+
+
+    def place_bet(self, amount):
+        self.bet = amount
 
 
     def calculate_score(self):
