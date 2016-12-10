@@ -1,14 +1,19 @@
 
 class Hand:
 
-    hand_id = 0
+    '''
+    this will grab a hand object based on the id
+    param id: id of the hand we are trying to grab
+    returns: returns hand object if found, else returns None
+    '''
+    id = 0
     hand_list = []
 
 
     def __init__(self):
         self.hand = []
-        self.id = Hand.hand_id
-        Hand.hand_id += 1
+        self.id = Hand.id
+        Hand.id += 1
         Hand.hand_list.append(self)
 
 
