@@ -13,8 +13,8 @@ class Hand:
     def __init__(self):
         self.hand = []
         self.split_hand = []
-        self.double_down = "no"
         self.bet = 0
+        self.split_bet = 0
         self.id = Hand.id
         Hand.id += 1
         Hand.hand_list.append(self)
@@ -22,6 +22,11 @@ class Hand:
 
     def print_hand(self):
         for i in self.hand:
+            print(i)
+
+
+    def print_split_hand(self):
+        for i in self.split_hand:
             print(i)
 
 
@@ -60,6 +65,40 @@ class Hand:
 
         # sum score starting with non-As, then add As individually, basing value on score up to that point
         for i in self.hand:
+            if i[0] != 'A':
+                score = score + values[ranks.index(i[0])]
+            else:
+                if score > 10: # this would break in the case of having 5 4 A A A (will sum to 22)
+                    score = score + 1
+                else:
+                    score = score + 11
+
+        return score
+
+
+    def calculate_split_score(self):
+        self.split_hand.sort()
+        ranks = list("A234567891JQK") # 10 is 1 here to correspond w/ index[0]
+        values = []
+        for i in range(1,14):
+            if i < 10:
+                values.append(i)
+            else:
+                values.append(10)
+        score = 0
+        hand_length = len(self.split_hand)
+
+        # sort so As are at the end to simplify addition (first append, then remove)
+        for i in range(0, hand_length):
+            if self.split_hand[i][0] == 'A':
+                self.split_hand.append(self.split_hand[i])
+
+        for i in range(hand_length - 1, 0, -1):
+            if self.split_hand[i][0] == 'A':
+                self.split_hand.remove(self.split_hand[i])
+
+        # sum score starting with non-As, then add As individually, basing value on score up to that point
+        for i in self.split_hand:
             if i[0] != 'A':
                 score = score + values[ranks.index(i[0])]
             else:

@@ -63,11 +63,13 @@ def main():
     # players choose to hit, stay, double down, or split
     for i in range(0, players):
         hit_or_stay = input("Player {}, Hit, Stay, sPlit, or Double down? (h/s/p/d) > ".format(str(i + 1))).lower()
+        split_hit_or_stay = ""
 
         while hit_or_stay != 's' and hit_or_stay != 'h' and hit_or_stay != 'p' and hit_or_stay != 'd':
             hit_or_stay = input("Player {}, Hit, Stay, sPlit, or Double down? (h/s/p/d) > ".format(str(i + 1))).lower()
 
         while hit_or_stay != 's':
+
             if hit_or_stay == 'd':
                 bet = get_hand(i).bet
                 get_hand(i).place_bet(bet * 2)
@@ -79,8 +81,24 @@ def main():
                 break
 
             if hit_or_stay == 'p':
-                print("code doesn't currently support this")
-                break
+                get_hand(i).split_hand.append(get_hand(i).hand[1])
+                get_hand(i).hand.remove(get_hand(i).split_hand[0])
+                get_hand(i).split_bet = get_hand(i).bet
+
+                while split_hit_or_stay != 's':
+
+                    get_hand(i).split_hand.append(deck.draw_card())
+                    print("In your second hand you have:")
+                    get_hand(i).print_split_hand()
+                    get_deck(0).print_card_count()
+
+                    if get_hand(i).calculate_split_score() > 21:
+                        print("Oh no! You bust.")
+                        break
+
+                    split_hit_or_stay = input("Player {}, Hit or Stay? (h/s) > ".format(str(i + 1))).lower() # not allowing double down on second split hand for now, for simplicity's sake
+                    while split_hit_or_stay != 's' and split_hit_or_stay != 'h':
+                        split_hit_or_stay = input("Player {}, Hit or Stay? (h/s) > ".format(str(i + 1))).lower()
 
             get_hand(i).hand.append(deck.draw_card())
             print("You have:")
@@ -119,6 +137,15 @@ def main():
             print("Congratulations Player {}, you scored {} and you win ${}!".format(str(i + 1),str(player_score), str(2 * player_bet)))
         else:
             print("Sorry Player {}, you scored {} and you lose ${}.".format(str(i + 1),str(player_score), str(player_bet)))
+        if get_hand(i).split_bet != 0:
+            player_split_score = get_hand(i).calculate_split_score()
+            split_bet = get_hand(i).split_bet
+            if player_split_score > dealer_score and player_split_score <= 21:
+                print("Congratulations Player {}, you scored {} on your split hand and you win ${}!".format(str(i + 1), str(player_split_score), str(2 * split_bet)))
+            elif player_score <= 21 and dealer_score > 21:
+                print("Congratulations Player {}, you scored {} on your split hand and you win ${}!".format(str(i + 1), str(player_split_score), str(2 * split_bet)))
+            else:
+                print("Sorry Player {}, you scored {} on your split hand and you lose ${}.".format(str(i + 1),str(player_split_score), str(split_bet)))
 
 
 main()
