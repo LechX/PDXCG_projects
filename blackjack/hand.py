@@ -75,7 +75,7 @@ class Hand:
 
         return score
 
-
+# erroring (duplicating aces)
     def calculate_split_score(self):
         self.split_hand.sort()
         ranks = list("A234567891JQK") # 10 is 1 here to correspond w/ index[0]
@@ -93,7 +93,7 @@ class Hand:
             if self.split_hand[i][0] == 'A':
                 self.split_hand.append(self.split_hand[i])
 
-        for i in range(hand_length - 1, 0, -1):
+        for i in range(hand_length - 1, -1, -1):
             if self.split_hand[i][0] == 'A':
                 self.split_hand.remove(self.split_hand[i])
 

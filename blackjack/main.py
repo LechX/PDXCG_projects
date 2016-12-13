@@ -8,8 +8,8 @@ def get_deck(id):
     returns: returns hand object if found, else returns None
     '''
     for i in Deck.deck_list:
-        if repr(i) == id: # nameshadowing id()
-            return str(i)
+        if i.__repr__() == id: # nameshadowing id()
+            return i
     return None
 
 
@@ -145,6 +145,7 @@ def main():
             print(win_message.format(str(i + 1),str(player_score), str(2 * player_bet)))
         else:
             print(loss_message.format(str(i + 1),str(player_score), str(player_bet)))
+        get_hand(i).print_hand()
         if get_hand(i).split_bet != 0:
             player_split_score = get_hand(i).calculate_split_score()
             split_bet = get_hand(i).split_bet
@@ -154,6 +155,7 @@ def main():
                 print(split_win_message.format(str(i + 1), str(player_split_score), str(2 * split_bet)))
             else:
                 print(split_loss_message.format(str(i + 1),str(player_split_score), str(split_bet)))
+            get_hand(i).print_split_hand()
 
 
 main()
