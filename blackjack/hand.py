@@ -59,7 +59,7 @@ class Hand:
             if self.hand[i][0] == 'A':
                 self.hand.append(self.hand[i])
 
-        for i in range(hand_length - 1, 0, -1):
+        for i in range(hand_length - 1, -1, -1):
             if self.hand[i][0] == 'A':
                 self.hand.remove(self.hand[i])
 
