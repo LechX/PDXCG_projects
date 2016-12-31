@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="ticTacToe.css">
+</head>
+<body>
+
+    <div id="turnSignifier">Your Turn</div>
+    <div class="container">
+        <div class="row">
+            <div class="block" id="b1" onclick=changeXO("b1")></div>
+            <div class="block" id="b2" onclick=changeXO("b2")></div>
+            <div class="block" id="b3" onclick=changeXO("b3")></div>
+        </div>
+        <div class="row">
+            <div class="block" id="b4" onclick=changeXO("b4")></div>
+            <div class="block" id="b5" onclick=changeXO("b5")></div>
+            <div class="block" id="b6" onclick=changeXO("b6")></div>
+        </div>
+        <div class="row">
+            <div class="block" id="b7" onclick=changeXO("b7")></div>
+            <div class="block" id="b8" onclick=changeXO("b8")></div>
+            <div class="block" id="b9" onclick=changeXO("b9")></div>
+        </div>
+    </div>
+    <div id="theContainer"></div>
+    <div><button id="restartButton" onclick="restarting()">start over?</button></div>
+
+<script src="ticTacToe.js"></script>
+
+</body>
+</html>

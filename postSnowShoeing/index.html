@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fun with JQuery</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="jquery-3.1.1.min.js"></script>
+</head>
+<body>
+
+    <div class="all">
+        <div class="containerOne">
+            <div id="d1"></div>
+            <div id="d2"></div>
+            <div id="d3"></div>
+        </div>
+        <div class="containerTwo">
+            <div id="d4"></div>
+            <div id="d5"></div>
+            <div id="d6"></div>
+        </div>
+    </div>
+
+    <script>
+        $('div').click(function() {
+            $(this).css('background-color', getRandomColor());
+        });
+    </script>
+
+
+    <img id="bulbing" src="lightOff.jpg"/>
+    <br/>
+    <button id="switcharooski">I/O</button>
+
+    <script>
+        var lightStatus = "off";
+        $('#switcharooski').click(function(){
+            if (lightStatus == "off"){
+            $('#bulbing').attr('src', 'lightOn.jpg');
+            lightStatus = "on";
+            } else {
+                $('#bulbing').attr('src', 'lightOff.jpg');
+                lightStatus = "off";
+            }
+        })
+    </script> -->
+
+<!--    <div class="redSquare"></div>
+    <div class="redSquare"></div>
+    <div id="greenCircle"></div>
+    <p>This is <i>some</i> text.</p>
+
+    <iframe id="myFrame" src="http://www.oregonlive.com/pacific-northwest-news/index.ssf/2016/12/snowstorm_dumps_more_than_a_fo_1.html#incart_river_home_pop"></iframe>
+
+    <button id="myButton">cLiCk HeRe</button>
+
+
+    <script>
+        $('#greenCircle').click(function() {
+            alert('circle clicked!');
+        })
+    </script>
+    <script>
+        $('.redSquare').click(function() {
+            alert('square clicked!');
+        })
+    </script>
+
+    <script>
+        $('#greenCircle').click(function() {
+            alert($('p').html());
+        })
+    </script>
+    <script>
+        var oldText = "";
+        $('#greenCircle').hover(function() {
+            oldText = $('p').html();
+            $('p').html("hello there");
+        }, function(){
+            $('p').html(oldText);
+        })
+    </script>
+    <script>
+        $('#myButton').click(function() {
+            $('#myFrame').attr("src", "http://www.oregonlive.com/portland/index.ssf/2016/12/police_identify_driver_killed.html#incart_river_home");
+        })
+    </script> -->
+    <!--  <script>
+        $('div').click(function() {
+            $(this).css('display', "none");
+            $(this).hide();
+            $(this).fadeOut(5000, function() {
+                $(this).fadeIn(1000);
+            });
+        })
+    </script>
+    <script>
+        $('#greenCircle').click(function() {
+            $('.redSquare').fadeOut(2000);
+        })
+    </script> -->
+    <script src="scripts.js"></script>
+
+</body>
+</html>

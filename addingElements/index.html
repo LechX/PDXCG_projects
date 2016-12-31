@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adding Elements</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="div1">
+
+        <div id="divInput">
+
+            <h1>Roll the DICE</h1>
+            <p>Please enter the number of dice you would like to roll:</p>
+            <input type="text" id="diceCount" required>
+            <button id="stopIt" onclick="diceEmUp()">Submit</button>
+
+        </div>
+
+
+        <div id="diceHolder">
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        // add new element to webpage
+
+        // document.write("<h1>This is a header, okay</h1>");
+
+        /* var paragraph = document.createElement("p");
+        var text = document.createTextNode("This is that new new text.");
+        paragraph.appendChild(text);
+        var element = document.getElementById("div1");
+
+        element.appendChild(paragraph);
+
+        var paragraph = document.createElement("p");
+        paragraph.setAttribute("class", "pTags");
+        paragraph.setAttribute("id", "testP");
+
+        document.getElementById("div1").appendChild(paragraph);
+
+        document.getElementById("testP").innerHTML = "Maybe this works?"; */
+
+    </script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

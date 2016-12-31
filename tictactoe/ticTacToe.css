@@ -1,0 +1,52 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    width: 330px;
+    height: 330px;
+    padding: 5px;
+}
+
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.block {
+    height: 100px;
+    width: 100px;
+    margin: 5px;
+    background-color: yellow;
+    font-size: 90px;
+}
+
+#theContainer {
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+}
+
+#restartButton {
+    visibility: hidden;
+}
+
+#turnSignifier {
+    visibility: visible;
+}
+
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
